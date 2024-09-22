@@ -5,7 +5,8 @@ import json
 
 login = input('Логин:  ')
 password = input('Пароль:  ')
-DSN = f"postgresql://{login}:{password}@localhost:5432/bookstore_db"
+data_base = input('База данных: ')
+DSN = f"postgresql://{login}:{password}@localhost:5432/{data_base}"
 engine = sqlalchemy.create_engine(DSN)
 
 create_tables(engine)

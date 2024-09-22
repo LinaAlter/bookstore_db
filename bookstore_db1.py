@@ -2,12 +2,10 @@ import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 from bookstore_db_models import create_tables, Publisher, Shop, Book, Stock, Sale
 import json
-import pandas as pd
 
-
-
-
-DSN = "postgresql://postgres:1358@localhost:5432/bookstore_db"
+login = input('Логин:  ')
+password = input('Пароль:  ')
+DSN = f"postgresql://{login}:{password}@localhost:5432/bookstore_db"
 engine = sqlalchemy.create_engine(DSN)
 
 create_tables(engine)
@@ -40,6 +38,7 @@ def get_by_publisher(input):
         selected = session.query(Book.title, Shop.name, Sale.price, Sale.date_sale).join(Publisher).join(Stock).join(Shop).join(Sale).filter(Publisher.name == search)
         for s in selected.all():
             print(f'{s[0]} | {s[1]} | {s[2]} | {s[3]}')
+
     
 get_by_publisher(input('Введите название издательства или его идентификационный номер: '))
 

@@ -68,8 +68,3 @@ def create_tables(engine):
 
 
 
-
-
-DSN = "postgresql://postgres:1358@localhost:5432/bookstore_db"
-engine = sqlalchemy.create_engine(DSN)
-create_tables(engine)
